@@ -13,7 +13,7 @@ Exercises from Stackoverflow:
     (when (bufferp "init.el") (save-buffer "init.el"))
   (load-file "~/.emacs.d/init.el"))
 (reload-dot-emacs)
-
+(message "fill-column is %d" fill-column)
 
 * strip-trailing-whitespace
 	delete whitespace at end of lines in the entire buffer
@@ -35,6 +35,20 @@ pX reverse a string
 ** write a program to compute the nth fibonacci number
 p* print out the grade school multiplication table up to 12x12
 pX write a function that sums up integers from a file, one int per line
+==================================================
+def sumfile(file)
+  contents=File.read(file)
+  nums=contents.split
+  total = 0
+  nums.each do |n| 
+   total+=Integer(n)
+  end
+  total
+end
+
 pX write function to print the odd numbers from 1 to 99
+# ruby
+1.upto(100) { |n| if n%2>0 then print n,"\n" end }
+
 ** find the largest int value in an array 
 ** Format an RGB value (three 1-byte numbers) as a 6-digit hexadecimal string.
