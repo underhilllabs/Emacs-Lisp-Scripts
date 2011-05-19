@@ -29,7 +29,7 @@
   (setq lim 0)
   (goto-char (point-min))
   (while 
-      (and (< lim 200) (re-search-forward "http:\/\/[^\]]*")
+      (re-search-forward "http:\/\/[^\]]*")
            (setq nextlink (match-string 0))
            (condition-case nil
                (if (url-http-file-exists-p nextlink)
@@ -39,7 +39,10 @@
                    (end-of-line)
                    (insert " LINK BROKEN"))
                  (message "Broken Link found: %s" nextlink))           
-             ((error) (message "Server down: %s" nextlink)))
+             ((error) (progn 
+                        (message "Server down: %s" nextlink)
+                        (end-of-line)
+                        (insert " Server Down") nil))
            ;;(setq urls (cdr urls))
            (setq lim (1+ lim))))
   (message "finished lim is %s" lim))
