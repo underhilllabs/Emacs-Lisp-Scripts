@@ -1,0 +1,58 @@
+Exercises from Stackoverflow:
+[http://stackoverflow.com/questions/41522/tips-for-learning-elisp]
+* load-my-favorite-file
+a function that when called loads up your favorite (hard-coded) file. for example, your .emacs file.
+  (find-file "~/.emacs.d/init.el")
+  (load-file "~/.emacs.d/init.el")
+* cycle-special-files
+  a function that when called repeatedly, cycles through a list of your favorite files (e.g. .aliases, weeklystatus, trackerlist)
+
+* count-string-matches
+  return the number of occurrences of STRING in the buffer following the point
+* reload-dot-emacs
+  prompt to save .emacs file (if necessary) and load the file
+(defun reload-dot-emacs ()
+  "reload .emacs file"
+  (when (y-or-n-p "Would you like to save .emacs file first?")
+    (when (bufferp "init.el") (save-buffer "init.el"))
+  (load-file "~/.emacs.d/init.el"))
+(reload-dot-emacs)
+(message "fill-column is %d" fill-column)
+
+* strip-trailing-whitespace
+	delete whitespace at end of lines in the entire buffer
+* insert-code-template
+	-- a function that inserts a template into the current buffer
+	e.g. a template of a header file, or a .cpp file, or a perl file  
+	-- bonus points for providing a mechanism for making it general enough to use so that it will work differently based on the appropriate mode and/or file extension
+	-- hints : the variable 'major-mode, association lists
+	-- more bonus points, hook it up so that this function is automatically called when a new (empty) file is opened
+* insert-checkin-template
+** a function that prompts you for the various fields for a check-in request, giving useful defaults
+bonus points for properly indenting the list of files
+* string-replace
+** take three string arguments, replace all occurrences of the first by the second in the third string. Return the newly created string.
+
+
+* write a function to:
+pX reverse a string
+** write a program to compute the nth fibonacci number
+p* print out the grade school multiplication table up to 12x12
+pX write a function that sums up integers from a file, one int per line
+==================================================
+def sumfile(file)
+  contents=File.read(file)
+  nums=contents.split
+  total = 0
+  nums.each do |n| 
+   total+=Integer(n)
+  end
+  total
+end
+
+pX write function to print the odd numbers from 1 to 99
+# ruby
+1.upto(100) { |n| if n%2>0 then print n,"\n" end }
+
+** find the largest int value in an array 
+** Format an RGB value (three 1-byte numbers) as a 6-digit hexadecimal string.
